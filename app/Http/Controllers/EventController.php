@@ -19,6 +19,7 @@ class EventController extends Controller
         dump($events);
 
         return response()->json($events);
+
     }
 
     public function create()

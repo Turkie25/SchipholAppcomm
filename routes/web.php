@@ -23,7 +23,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/events', function () {
-        return Inertia::render('events'); // Assuming you have a view at resources/js/Pages/Events/Index.vue
+        return Inertia::render('events/events'); // Assuming you have a view at resources/js/Pages/Events/Index.vue
     })->name('events');
 });
 
@@ -34,7 +34,6 @@ use App\Http\Controllers\EventController;
 
 // In routes/web.php or routes/api.php
 Route::get('/events/search', [EventSearchController::class, 'search']);
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('dashboard.events.create');
