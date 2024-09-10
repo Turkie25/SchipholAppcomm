@@ -1,0 +1,93 @@
+<?php
+
+namespace Tests\Unit;
+
+use Tests\TestCase;
+use App\Models\Event;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class EventSearchTest extends TestCase
+{
+    use RefreshDatabase; // To ensure a fresh database state for each test
+
+    /** @test */
+    public function testCanSearchEventsByDuration()
+    {
+        // Arrange: Create test events
+        $eventOne = Event::create([
+            'name' => 'Event One',
+            'description' => 'Description for Event One',
+            'location' => 'Location One',
+            'duration' => '02:00:00', // Use HH:MM:SS format
+            'capacity' => 100,
+            'start_time' => now()->addDay(),
+            'end_time' => now()->addDay()->addHours(2),
+        ]);
+
+        $eventTwo = Event::create([
+            'name' => 'Event Two',
+            'description' => 'Description for Event Two',
+            'location' => 'Location Two',
+            'duration' => '04:00:00', // Use HH:MM:SS format
+            'capacity' => 200,
+            'start_time' => now()->addDays(2),
+            'end_time' => now()->addDays(2)->addHours(4),
+        ]);
+
+        dump(Event::all());
+
+        // Assert that events are created
+        $this->assertDatabaseHas('events', [
+            'name' => 'Event One',
+            'duration' => '02:00:00'
+        ]);
+
+        $this->assertDatabaseHas('events', [
+            'name' => 'Event Two',
+            'duration' => '04:00:00',
+        ]);
+
+
+
+        // Act: Search for events with a duration of '04:00:00'
+        $response = $this->json('GET', '/api/events', ['duration' => '04:00:00']);
+
+        // Assert: Check if the correct event is returned
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'name' => 'Event Two',
+                'duration' => '04:00:00',
+            ]);
+//        $response->dump();
+
+    }
+
+
+
+//    public function testCanSearchEventsByDuration()
+//    {
+//        // Arrange: Create test events
+//        Event::create([
+//            'name' => 'Event One',
+//            'duration' => '2 hours',
+//            // other attributes...
+//        ]);
+//
+//        Event::create([
+//            'name' => 'Event Two',
+//            'duration' => '4 hours',
+//            // other attributes...
+//        ]);
+//
+//        // Act: Search for events with a duration of '4 hours'
+//        $response = $this->json('GET', '/api/events', ['duration' => '4 hours']);
+//
+//        // Assert: Check if the correct event is returned
+//        $response->assertStatus(200)
+//            ->assertJsonFragment([
+//                'name' => 'Event Two',
+//                'duration' => '4 hours',
+//            ]);
+//    }
+
+}
