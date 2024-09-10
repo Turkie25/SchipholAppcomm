@@ -51,6 +51,9 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+                              <NavLink :href="route('events')" :active="route().current('events')">
+                                Events
+                              </NavLink>
                             </div>
                         </div>
 
@@ -195,6 +198,7 @@ const logout = () => {
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
+
 
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">

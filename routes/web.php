@@ -21,7 +21,14 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/events', function () {
+        return Inertia::render('events'); // Assuming you have a view at resources/js/Pages/Events/Index.vue
+    })->name('events');
 });
+
+
+
 
 use App\Http\Controllers\EventController;
 
