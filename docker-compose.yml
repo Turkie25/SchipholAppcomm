@@ -35,7 +35,7 @@ services:
         labels:
             - "traefik.enable=true"
             - "traefik.docker.network=traefik-appcomm"
-            - "traefik.http.routers.${PROJECT_NAME}-nginx.rule=Host(`cleanlaravel.localhost`) || Host(`vite.cleanlaravel.localhost`)"
+            - "traefik.http.routers.${PROJECT_NAME}-nginx.rule=Host(`schiphol.localhost`) || Host(`vite.schiphol.localhost`)"
             - "traefik.http.routers.${PROJECT_NAME}-nginx.entrypoints=web"
             - "traefik.http.middlewares.${PROJECT_NAME}-Header.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST"
             - "traefik.http.middlewares.${PROJECT_NAME}-Header.headers.accesscontrolmaxage=100"
