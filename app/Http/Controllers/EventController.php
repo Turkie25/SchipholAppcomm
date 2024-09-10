@@ -14,11 +14,12 @@ class EventController extends Controller
     {
         $duration = $request->get('duration');
 
-        // Filter events based on duration (exact match)
-        $events = Event::where('duration', $duration)->get();
-        dump($events);
 
-        return response()->json($events);
+        // Filter Events based on duration (exact match)
+        $events = Event::all();
+        return Inertia::render('Events/Overview', [
+            'events' => $events,
+        ]);
 
     }
 
@@ -41,6 +42,6 @@ class EventController extends Controller
 
         Event::create($validated);
 
-        return Redirect::route('dashboard.events.create')->with('success', 'Event created successfully.');
+        return Redirect::route('dashboard.Events.create')->with('success', 'Event created successfully.');
     }
 }

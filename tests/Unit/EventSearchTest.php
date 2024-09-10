@@ -13,7 +13,7 @@ class EventSearchTest extends TestCase
     /** @test */
     public function testCanSearchEventsByDuration()
     {
-        // Arrange: Create test events
+        // Arrange: Create test Events
         $eventOne = Event::create([
             'name' => 'Event One',
             'description' => 'Description for Event One',
@@ -36,21 +36,21 @@ class EventSearchTest extends TestCase
 
 //        dump(Event::all());
 
-        // Assert that events are created
-        $this->assertDatabaseHas('events', [
+        // Assert that Events are created
+        $this->assertDatabaseHas('Events', [
             'name' => 'Event One',
             'duration' => '02:00:00'
         ]);
 
-        $this->assertDatabaseHas('events', [
+        $this->assertDatabaseHas('Events', [
             'name' => 'Event Two',
             'duration' => '04:00:00',
         ]);
 
 
 
-        // Act: Search for events with a duration of '04:00:00'
-        $response = $this->json('GET', '/api/events', ['duration' => '02:00:00']);
+        // Act: Search for Events with a duration of '04:00:00'
+        $response = $this->json('GET', '/api/Events', ['duration' => '02:00:00']);
 
         // Assert: Check if the correct event is returned
         $response->assertStatus(200)
@@ -65,7 +65,7 @@ class EventSearchTest extends TestCase
 /** @test */
     public function testCanSearchEventsByFlightNumberAndTransitDuration()
     {
-        // Arrange: Create test events
+        // Arrange: Create test Events
         $eventOne = Event::create([
             'name' => 'Event One',
             'description' => 'Description for Event One',
@@ -86,16 +86,16 @@ class EventSearchTest extends TestCase
             'end_time' => now()->addDays(2)->addHours(4),
         ]);
 
-        // Act: Search for events that fit within the transit duration of a flight
+        // Act: Search for Events that fit within the transit duration of a flight
         $flightNumber = 'AB12'; // Example flight number
         $transitDuration = '08:00:00'; // Example transit duration
-        $response = $this->json('GET', '/api/events', [
+        $response = $this->json('GET', '/api/Events', [
             'flight_number' => $flightNumber,
             'transit_duration' => $transitDuration,
         ]);
 
-        // Act: Search for events with a duration of '04:00:00'
-        $response = $this->json('GET', '/api/events', ['duration' => '03:00:00']);
+        // Act: Search for Events with a duration of '04:00:00'
+        $response = $this->json('GET', '/api/Events', ['duration' => '03:00:00']);
 
         // Assert: Check if the correct event is returned
         $response->assertStatus(200)
@@ -109,7 +109,7 @@ class EventSearchTest extends TestCase
 
 //    public function testCanSearchEventsByDuration()
 //    {
-//        // Arrange: Create test events
+//        // Arrange: Create test Events
 //        Event::create([
 //            'name' => 'Event One',
 //            'duration' => '2 hours',
@@ -122,8 +122,8 @@ class EventSearchTest extends TestCase
 //            // other attributes...
 //        ]);
 //
-//        // Act: Search for events with a duration of '4 hours'
-//        $response = $this->json('GET', '/api/events', ['duration' => '4 hours']);
+//        // Act: Search for Events with a duration of '4 hours'
+//        $response = $this->json('GET', '/api/Events', ['duration' => '4 hours']);
 //
 //        // Assert: Check if the correct event is returned
 //        $response->assertStatus(200)

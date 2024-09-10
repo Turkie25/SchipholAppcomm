@@ -10,4 +10,4 @@ Route::get('/user', function (Request $request) {
 // routes/api.php
 use App\Http\Controllers\EventController;
 
-Route::get('/events', [EventController::class, 'index']);
+Route::get('/Events', [EventController::class, 'index']);

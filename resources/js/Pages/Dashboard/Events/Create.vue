@@ -55,7 +55,7 @@ export default {
     });
 
     function submit() {
-      form.post(route('dashboard.events.store'));
+      form.post(route('dashboard.Events.store'));
     }
 
     return { form, submit };

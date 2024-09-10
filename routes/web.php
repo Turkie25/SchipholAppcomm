@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\EventSearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use Inertia\Inertia;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -22,21 +25,16 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/events', function () {
-        return Inertia::render('events/events'); // Assuming you have a view at resources/js/Pages/Events/Index.vue
-    })->name('events');
+
 });
 
-
-
-
-use App\Http\Controllers\EventController;
+Route::get('/events', [EventController::class, 'index'])->name('events');
 
 // In routes/web.php or routes/api.php
-Route::get('/events/search', [EventSearchController::class, 'search']);
+Route::get('/Events/search', [EventSearchController::class, 'search']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('dashboard.events.create');
-    Route::post('/dashboard/events', [EventController::class, 'store'])->name('dashboard.events.store');
+    Route::get('/dashboard/Events/create', [EventController::class, 'create'])->name('dashboard.Events.create');
+    Route::post('/dashboard/Events', [EventController::class, 'store'])->name('dashboard.Events.store');
 });
 

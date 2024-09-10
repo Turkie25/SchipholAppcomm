@@ -4,6 +4,7 @@ import NavLink from "@/Components/NavLink.vue";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import EventContainers from "@/Pages/Events/eventContainers.vue";
 import {ref} from "vue";
+import events from "./events.vue";
 
 defineProps({
   canLogin: {
@@ -71,10 +72,8 @@ function handleImageError() {
 
     <div class="	flex justify-center  ">
       <div class="flex flex-wrap gap-3 flex w-10/12">
-
-        <event-containers
-            v-for="index in numberOfContainers"
-            :key="index"
+        <event-containers v-for="event in $page.props.events"
+            :event="event"
         ></event-containers>
       </div>
     </div>
