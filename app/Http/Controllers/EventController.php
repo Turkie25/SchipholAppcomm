@@ -12,10 +12,11 @@ class EventController extends Controller
 {
     public function index(Request $request)
     {
-        $duration = $request->query('duration');
+        $duration = $request->get('duration');
 
         // Filter events based on duration (exact match)
         $events = Event::where('duration', $duration)->get();
+        dump($events);
 
         return response()->json($events);
     }
