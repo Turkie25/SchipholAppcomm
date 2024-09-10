@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Flight;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -32,5 +33,7 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $user) {
             User::factory()->create($user);
         }
+
+        Flight::factory()->count(10)->create();
     }
 }

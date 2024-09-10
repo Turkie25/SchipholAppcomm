@@ -34,7 +34,7 @@ class EventSearchTest extends TestCase
             'end_time' => now()->addDays(2)->addHours(4),
         ]);
 
-        dump(Event::all());
+//        dump(Event::all());
 
         // Assert that events are created
         $this->assertDatabaseHas('events', [
@@ -50,16 +50,59 @@ class EventSearchTest extends TestCase
 
 
         // Act: Search for events with a duration of '04:00:00'
-        $response = $this->json('GET', '/api/events', ['duration' => '04:00:00']);
+        $response = $this->json('GET', '/api/events', ['duration' => '02:00:00']);
 
         // Assert: Check if the correct event is returned
         $response->assertStatus(200)
             ->assertJsonFragment([
-                'name' => 'Event Two',
-                'duration' => '04:00:00',
+                'name' => 'Event One',
+                'duration' => '02:00:00',
             ]);
 //        $response->dump();
 
+    }
+
+/** @test */
+    public function testCanSearchEventsByFlightNumberAndTransitDuration()
+    {
+        // Arrange: Create test events
+        $eventOne = Event::create([
+            'name' => 'Event One',
+            'description' => 'Description for Event One',
+            'location' => 'Location One',
+            'duration' => '03:00:00', // Use HH:MM:SS format
+            'capacity' => 100,
+            'start_time' => now()->addDay(),
+            'end_time' => now()->addDay()->addHours(2),
+        ]);
+
+        $eventTwo = Event::create([
+            'name' => 'Event Two',
+            'description' => 'Description for Event Two',
+            'location' => 'Location Two',
+            'duration' => '04:00:00', // Use HH:MM:SS format
+            'capacity' => 200,
+            'start_time' => now()->addDays(2),
+            'end_time' => now()->addDays(2)->addHours(4),
+        ]);
+
+        // Act: Search for events that fit within the transit duration of a flight
+        $flightNumber = 'AB12'; // Example flight number
+        $transitDuration = '08:00:00'; // Example transit duration
+        $response = $this->json('GET', '/api/events', [
+            'flight_number' => $flightNumber,
+            'transit_duration' => $transitDuration,
+        ]);
+
+        // Act: Search for events with a duration of '04:00:00'
+        $response = $this->json('GET', '/api/events', ['duration' => '03:00:00']);
+
+        // Assert: Check if the correct event is returned
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'name' => 'Event One',
+                'duration' => '03:00:00',
+            ]);
     }
 
 
