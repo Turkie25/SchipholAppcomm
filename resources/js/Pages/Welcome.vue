@@ -22,7 +22,7 @@ defineProps({
   },
 });
 
-const numberOfContainers = ref(9); // Adjust the number of containers as needed
+const numberOfContainers = ref(12); // Adjust the number of containers as needed
 
 function handleImageError() {
   document.getElementById('screenshot-container')?.classList.add('!hidden');
