@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+    php:
+        container_name: ${PROJECT_NAME}-php
+        build:
+            context: ./
+            dockerfile: "./docker/php/Dockerfile"
+            args:
+                - USER_ID=${WWWUSER}
+                - GROUP_ID=${WWWGROUP}
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html:cached
+            - /var/www/html/.git
+            - ./public:/var/www/html/public:delegated
+        ports:
+            - '${VITE_PROJECT_PORT:-5173}:${VITE_PROJECT_PORT:-5173}'
+        networks:
+            - default
+            - traefik-appcomm
+    nginx:
+        container_name: ${PROJECT_NAME}-nginx
+        image: wodby/nginx
+        environment:
+            NGINX_STATIC_OPEN_FILE_CACHE: "off"
+            NGINX_ERROR_LOG_LEVEL: debug
+            NGINX_BACKEND_HOST: php
+            NGINX_VHOST_PRESET: php
+            NGINX_SERVER_ROOT: /var/www/html/public
+        volumes:
+            - ./public:/var/www/html/public:delegated
+        networks:
+            - default
+            - traefik-appcomm
+        labels:
+            - "traefik.enable=true"
+            - "traefik.docker.network=traefik-appcomm"
+            - "traefik.http.routers.${PROJECT_NAME}-nginx.rule=Host(`cleanlaravel.localhost`) || Host(`vite.cleanlaravel.localhost`)"
+            - "traefik.http.routers.${PROJECT_NAME}-nginx.entrypoints=web"
+            - "traefik.http.middlewares.${PROJECT_NAME}-Header.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST"
+            - "traefik.http.middlewares.${PROJECT_NAME}-Header.headers.accesscontrolmaxage=100"
+            - "traefik.http.middlewares.${PROJECT_NAME}-Header.headers.addvaryheader=true"
+            - "traefik.http.middlewares.${PROJECT_NAME}-Header.headers.accessControlAllowCredentials=true"
+            - "traefik.http.routers.${PROJECT_NAME}-nginx.middlewares=${PROJECT_NAME}-Header"
+
+volumes:
+    mariadb:
+        driver: local
+    redis:
+        driver: local
+
+# Make the externally created network "traefik-appcomm" available as network "default"
+# docker network create traefik-appcomm
+networks:
+    traefik-appcomm:
+        name: traefik-appcomm
+        external: true
