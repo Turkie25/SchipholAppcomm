@@ -22,3 +22,11 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+use App\Http\Controllers\EventController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('dashboard.events.create');
+    Route::post('/dashboard/events', [EventController::class, 'store'])->name('dashboard.events.store');
+});
+
