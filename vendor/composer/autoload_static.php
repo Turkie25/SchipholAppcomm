@@ -6771,6 +6771,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Tests\\Feature\\TwoFactorAuthenticationSettingsTest' => __DIR__ . '/../..' . '/tests/Feature/TwoFactorAuthenticationSettingsTest.php',
         'Tests\\Feature\\UpdatePasswordTest' => __DIR__ . '/../..' . '/tests/Feature/UpdatePasswordTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'Tests\\Unit\\EventSearchTest' => __DIR__ . '/../..' . '/tests/Unit/EventSearchTest.php',
         'Tests\\Unit\\ExampleTest' => __DIR__ . '/../..' . '/tests/Unit/ExampleTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',

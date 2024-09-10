@@ -6224,6 +6224,7 @@ return array(
     'Tests\\Feature\\TwoFactorAuthenticationSettingsTest' => $baseDir . '/tests/Feature/TwoFactorAuthenticationSettingsTest.php',
     'Tests\\Feature\\UpdatePasswordTest' => $baseDir . '/tests/Feature/UpdatePasswordTest.php',
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',
+    'Tests\\Unit\\EventSearchTest' => $baseDir . '/tests/Unit/EventSearchTest.php',
     'Tests\\Unit\\ExampleTest' => $baseDir . '/tests/Unit/ExampleTest.php',
     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',
     'TheSeer\\Tokenizer\\NamespaceUri' => $vendorDir . '/theseer/tokenizer/src/NamespaceUri.php',

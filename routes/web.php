@@ -25,6 +25,10 @@ Route::middleware([
 
 use App\Http\Controllers\EventController;
 
+// In routes/web.php or routes/api.php
+Route::get('/events/search', [EventSearchController::class, 'search']);
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('dashboard.events.create');
     Route::post('/dashboard/events', [EventController::class, 'store'])->name('dashboard.events.store');

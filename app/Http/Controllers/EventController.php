@@ -10,6 +10,16 @@ use Inertia\Inertia;
 
 class EventController extends Controller
 {
+    public function index(Request $request)
+    {
+        $duration = $request->query('duration');
+
+        // Filter events based on duration (exact match)
+        $events = Event::where('duration', $duration)->get();
+
+        return response()->json($events);
+    }
+
     public function create()
     {
         return Inertia::render('Dashboard/Events/Create');

@@ -10,7 +10,7 @@ export default defineConfig(() => {
             https: false,
             host: "0.0.0.0",
             hmr: {
-                host: "vite.cleanlaravel.localhost"
+                host: "vite.schiphol.localhost"
             },
         },
         plugins: [
