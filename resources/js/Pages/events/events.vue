@@ -2,6 +2,11 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import EventForm from "@/Pages/events/eventForm.vue";
+import EventContainers from "@/Pages/events/eventContainers.vue";
+import {ref} from "vue";
+import EvenContainersAdmin from "@/Pages/events/evenContainersAdmin.vue";
+const numberOfContainers = ref(4); // Adjust the number of containers as needed
+
 </script>
 
 <template>
@@ -18,6 +23,17 @@ import EventForm from "@/Pages/events/eventForm.vue";
 
         </event-form>
       </div>
+
+      <div class="	flex justify-center  ">
+        <div class="flex flex-wrap gap-3 flex w-10/12">
+
+<!--          <even-containers-admin-->
+<!--              v-for="index in numberOfContainers"-->
+<!--              :key="index"-->
+<!--          ></even-containers-admin>-->
+        </div>
+      </div>
+
     </div>
   </AppLayout>
 </template>

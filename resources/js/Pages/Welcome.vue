@@ -70,7 +70,7 @@ function handleImageError() {
 
 
     <div class="	flex justify-center  ">
-      <div class="flex flex-wrap gap-3 flex w-10/12">
+      <div class="flex flex-wrap gap-3 flex w-10/12 justify-center">
 
         <event-containers
             v-for="index in numberOfContainers"
