@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-  <div class="bg-white shadow-md w-9/12	rounded-lg border border-gray-200 p-4  mt-6">
+  <div class="bg-white shadow-md w-9/12	  rounded-lg border border-gray-200 p-4  mt-6">
     <div class="flex justify-between">
     <h2 class="text-lg font-semibold mb-2">Name</h2>
       <button
