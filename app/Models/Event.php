@@ -11,7 +11,7 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'location', 'duration', 'capacity', 'start_time', 'end_time',
+       'id', 'name', 'description', 'location', 'duration', 'capacity', 'start_time', 'end_time',
     ];
 
     public $timestamps = true;

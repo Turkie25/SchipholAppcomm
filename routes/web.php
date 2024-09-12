@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventSearchController;
+use App\Http\Controllers\FlightController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
@@ -29,6 +30,9 @@ Route::middleware([
 });
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('event.show');
+Route::get('/api/flights', [FlightController::class, 'getFlights']);
+
 
 // In routes/web.php or routes/api.php
 Route::get('/Events/search', [EventSearchController::class, 'search']);

@@ -14,4 +14,13 @@ class FlightController extends Controller
         return response()->json($flights);
     }
 
+    public function getFlights()
+    {
+        // Fetch flight data from the database
+        $flights = Flight::all(['flight_number', 'flight_one_name']);
+
+        // Return data as JSON
+        return response()->json($flights);
+    }
+
 }

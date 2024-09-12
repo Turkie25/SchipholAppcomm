@@ -2,8 +2,9 @@
 import {Head, Link} from '@inertiajs/vue3';
 import NavLink from "@/Components/NavLink.vue";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
-import EventContainers from "@/Pages/Events/eventContainers.vue";
+import EventContainers from "@/Pages/Events/EventContainers.vue";
 import {ref} from "vue";
+import Navbar from "@/Pages/Events/navbar.vue";
 
 defineProps({
   canLogin: {
@@ -34,28 +35,7 @@ function handleImageError() {
 
 <template>
   <div class="min-h-screen bg-gray-100">
-    <nav class="bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <!-- Logo -->
-          <div class="flex-shrink-0">
-            <Link :href="route('dashboard')">
-              <ApplicationMark class="block h-9 w-auto"/>
-            </Link>
-          </div>
-
-          <!-- Navigation Links -->
-          <div class="hidden space-x-8 sm:flex sm:ml-auto">
-            <Link :href="route('login')">
-              Log in
-            </Link>
-            <Link :href="route('register')">
-              Register
-            </Link>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <navbar></navbar>
 
 
     <div class="py-4 bg-gray-100">

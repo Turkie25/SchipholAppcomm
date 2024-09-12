@@ -44,4 +44,13 @@ class EventController extends Controller
 
         return Redirect::route('dashboard.Events.create')->with('success', 'Event created successfully.');
     }
+
+    public function show($id)
+    {
+        $event = Event::findOrFail($id);
+        return Inertia::render('Events/Show', [
+            'event' => $event
+        ]);
+    }
+
 }
