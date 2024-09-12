@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('location');
-            $table->time('duration'); // Duration in hours and minutes
+            $table->integer('duration'); // Duration in hours and minutes
             $table->integer('capacity'); // Maximum number of attendees
             $table->time('start_time'); // When the event starts
             $table->time('end_time'); // When the event ends

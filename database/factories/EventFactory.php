@@ -12,14 +12,29 @@ class EventFactory extends Factory
 
     public function definition()
     {
+
+        $locations = [
+            'Stop 1',
+            'Stop 2',
+            'Stop 3',
+            'Stop 4',
+            'Stop 5',
+            'Stop 6',
+        ];
+
+//        $startTime = $this->faker->randomElement($startTimes);
+        $location = $this->faker->randomElement($locations);
+
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->sentence,
             'description' => $this->faker->text,
-            'location' => $this->faker->city,
-            'duration' => $this->faker->numberBetween(1, 24),
-            'capacity' => $this->faker->numberBetween(1, 100),
-            'start_time' => $this->faker->time,
-            'end_time' => Carbon::now()->addHours($this->faker->numberBetween(1, 24)),
+            'location' => $location,
+            'duration' => $this->faker->numberBetween(30, 120), // Duration in minutes, not too long
+            'capacity' => $this->faker->numberBetween(10, 50), // Adjust capacity as needed
+            'start_time' => $startTime = $this->faker->time('H:i:s'),
+            'end_time' => Carbon::createFromFormat('H:i:s', $startTime)
+                ->addMinutes($this->faker->numberBetween(30, 120)) // Duration should match
+                ->format('H:i:s'),
         ];
     }
 }
