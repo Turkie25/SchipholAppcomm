@@ -2,7 +2,7 @@
 import {Head, Link} from '@inertiajs/vue3';
 import NavLink from "@/Components/NavLink.vue";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
-import EventContainers from "@/Pages/events/eventContainers.vue";
+import EventContainers from "@/Pages/Events/eventContainers.vue";
 import {ref} from "vue";
 
 defineProps({

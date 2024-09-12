@@ -1,7 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
-import EventForm from "@/Pages/events/eventForm.vue";
+import EventForm from "@/Pages/Events/eventForm.vue";
 import EventContainers from "@/Pages/Events/EventContainers.vue";
 import {ref} from "vue";
 import EvenContainersAdmin from "@/Pages/Events/evenContainersAdmin.vue";
