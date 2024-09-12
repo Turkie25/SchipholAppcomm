@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReservationConfirmation;
 use App\Models\Event;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -25,9 +27,13 @@ class ReservationController extends Controller
             'email' => $validated['email'],
             'event_id' => $event->id,
             'number_of_people' => $validated['number_of_people'],
-            'reservation_time' => $event->start_time,
+            'reservation_time' => now()->format('H:i:s'),
         ]);
 
+        // Send the reservation confirmation email
+        Mail::to($reservation->email)->send(new ReservationConfirmation($reservation, $event));
+
+        // Return the created reservation as a JSON response
         return response()->json($reservation, 201);
     }
 }
