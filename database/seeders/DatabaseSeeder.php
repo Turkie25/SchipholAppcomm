@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             User::factory()->create($user);
         }
 
-        Event::factory()->count(10)->create();
+        Event::factory()->count(6)->create();
 
         Flight::factory()->count(10)->create();
     }
