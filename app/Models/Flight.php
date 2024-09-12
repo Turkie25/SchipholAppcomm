@@ -14,18 +14,8 @@ class Flight extends Model
         'user_id', 'flight_number', 'arrival_time', 'departure_time', 'connecting_flight_id'
     ];
 
-    public function connectingFlight(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Flight::class, 'connecting_flight_id');
-    }
-
-    public function previousFlight(): \Illuminate\Database\Eloquent\Relations\HasOne
-    {
-        return $this->hasOne(Flight::class, 'connecting_flight_id');
-    }
-
-    public function getTransitDurationAttribute()
-    {
-        return $this->departure_time->diffInHours($this->arrival_time);
-    }
+//    public function getTransitDurationAttribute()
+//    {
+//        return $this->transit_duration();
+//    }
 }

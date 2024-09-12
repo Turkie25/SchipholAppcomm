@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('event_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
             $table->integer('number_of_people');
             $table->time('reservation_time');
             $table->timestamps();
