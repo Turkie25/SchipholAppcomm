@@ -12,7 +12,7 @@ class EventController extends Controller
 {
     public function index(Request $request)
     {
-        $duration = $request->get('duration');
+//        $duration = $request->get('duration');
 
 
         // Filter Events based on duration (exact match)
